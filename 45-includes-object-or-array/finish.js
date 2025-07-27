@@ -9,26 +9,42 @@
  * а затем применить метод "includes" с аргументом, который также будет преобразован в строку
  */
 
+const isElementInArray = (searchElement, inputArray) => {
+  if (typeof searchElement !== "object") {
+    return inputArray.includes(searchElement);
+  }
+
+  const searchElementNew = JSON.stringify(searchElement);
+
+  //return inputArray.some((element) => JSON.stringify(element) === searchStr);
+
+  inputArray.map(
+    (element, index) => (inputArray[index] = JSON.stringify(element))
+  );
+
+  return inputArray.includes(searchElementNew);
+};
+
 const tags = [
-  ['javascript', 'es6'],
-  ['css', 'flexbox'],
-  ['html', 'web-browser'],
-]
+  ["javascript", "es6"],
+  ["css", "flexbox"],
+  ["html", "web-browser"],
+];
 
 const fruits = [
-  { title: 'Orange', quantity: 10 },
-  { title: 'Banana', quantity: 5 },
-  { title: 'Apple', quantity: 25 },
-]
+  { title: "Orange", quantity: 10 },
+  { title: "Banana", quantity: 5 },
+  { title: "Apple", quantity: 25 },
+];
 
-const primitiveTypesArray = [25, 'x', true, undefined, null]
+const primitiveTypesArray = [25, "x", true, undefined, null];
 
-console.log(isElementInArray(['css', 'flexbox'], tags)) // true
+console.log(isElementInArray(["css", "flexbox"], tags)); // true
 
-console.log(isElementInArray(['flexbox', 'css'], tags)) // false
+console.log(isElementInArray(["flexbox", "css"], tags)); // false
 
-console.log(isElementInArray({ title: 'Apple', quantity: 25 }, fruits)) // true
+console.log(isElementInArray({ title: "Apple", quantity: 25 }, fruits)); // true
 
-console.log(isElementInArray({ title: 'Banana' }, fruits)) // false
+console.log(isElementInArray({ title: "Banana" }, fruits)); // false
 
-console.log(isElementInArray(25, primitiveTypesArray)) // true
+console.log(isElementInArray(25, primitiveTypesArray)); // true

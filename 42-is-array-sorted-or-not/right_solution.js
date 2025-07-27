@@ -11,38 +11,31 @@
  * 5. Если массив не отсортирован - вернуть "Массив не отсортирован"
  */
 
+const arraySortInfo = (inputArray) => {
+  if (inputArray.some((element) => typeof element != "number")) {
+    return "Некоторые элементы не являются числами";
+  }
+  if (
+    inputArray.every((element, index) =>
+      index > 0 ? element >= inputArray[index - 1] : true
+    )
+  ) {
+    return "Массив отсортирован по возрастанию";
+  }
+  if (
+    inputArray.every((element, index) =>
+      index > 0 ? element <= inputArray[index - 1] : true
+    )
+  ) {
+    return "Массив отсортирован по убыванию";
+  }
+  return "Массив не отсортирован";
+};
+
 const a = [5, "abc", 10, 1];
 const b = [4, 10, 14, 25, 25, 50];
 const c = [150, 132, 80, 40];
 const d = [15, 26, 10, 23, 85];
-
-function arraySortInfo(inputArray) {
-  let allInts = inputArray.every((elem) => typeof elem === "number");
-  if (allInts == 0) {
-    return "Некоторые элементы не являются числами";
-  }
-  let sorted = true;
-  for (let i = 1; i < inputArray.length; i += 1) {
-    if (inputArray[i] < inputArray[i - 1]) {
-      sorted = false;
-    }
-  }
-  if (sorted === true) {
-    return "Массив отсортирован по возрастанию";
-  }
-
-  let sortedReversed = true;
-  for (let i = inputArray.length - 1; i > 0; i -= 1) {
-    if (inputArray[i] > inputArray[i - 1]) {
-      sortedReversed = false;
-    }
-  }
-  if (sortedReversed === true) {
-    return "Массив отсортирован по убыванию";
-  } else {
-    return "Массив не отсортирован";
-  }
-}
 
 console.log(arraySortInfo(a)); // Некоторые элементы не являются числами
 console.log(arraySortInfo(b)); // Массив отсортирован по возрастанию
