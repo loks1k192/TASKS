@@ -18,16 +18,53 @@ const scores2 = [1.7, 4.5, 0, 4.9, 5.0, 4.2];
 const scores3 = [1.3, 2.5, 1.9];
 const scores4 = ["abc", 1.3, true, 2.5, 1.9];
 
-console.log(meanScore(/* все элементы из массива "scores1" */));
+function meanScore(...array) {
+  let check = false;
+  let sum = 0;
+  array.forEach((element) => {
+    if (typeof element !== "number") {
+      check = true;
+    }
+  });
+  if (check === true) {
+    return "Все аргументы в вызове функции должны быть числами!";
+  } else {
+    array.forEach((element) => {
+      sum += element;
+    });
+  }
+  return parseFloat((sum / array.length).toFixed(2));
+}
+
+function meanScore(numbers) {
+  if (numbers.some((num) => typeof num !== "number")) {
+    return console.error("Все аргументы в вызове функции должны быть числами!");
+  }
+
+  return numbers
+    .reduce((mean, num) => mean + num / numbers.length, 0)
+    .toFixed(2);
+}
+
+console.log(meanScore(...scores1 /* все элементы из массива "scores1" */));
 // 1.93
 
-console.log(meanScore(/* все элементы из массивов "scores1" и "scores2" */));
+console.log(
+  meanScore(
+    ...scores1,
+    ...scores2 /* все элементы из массивов "scores1" и "scores2" */
+  )
+);
 // 2.8
 
 console.log(
-  meanScore(/* все элементы из массивов "scores1", "scores2" и "scores3" */)
+  meanScore(
+    ...scores1,
+    ...scores2,
+    ...scores3 /* все элементы из массивов "scores1", "scores2" и "scores3" */
+  )
 );
 // 2.59
 
-console.log(meanScore(/* все элементы из массива "scores4" */));
+console.log(meanScore(scores4 /* все элементы из массива "scores4" */));
 // Все аргументы в вызове функции должны быть числами!
