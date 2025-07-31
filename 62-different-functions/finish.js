@@ -8,9 +8,12 @@
  */
 
 function firstFunction(a, b) {
-  return a + b
+  return a + b;
 }
 
-const secondFunction = function (a, b) {
-  return a + b
-}
+const secondFunction = (a, b) => {
+  return a + b;
+};
+
+console.log(firstFunction(1, 2));
+console.log(secondFunction(3, 4));

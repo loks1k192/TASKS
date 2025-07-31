@@ -10,10 +10,19 @@ const objectWithNumbers = {
   x: 5,
   y: 20,
   z: 3,
-}
+};
 
 // Создайте функцию здесь
+function mult(object) {
+  let res = 1;
+  let nums;
+  nums = Object.values(object);
+  nums.forEach((element) => {
+    res *= element;
+  });
+  return res;
+}
 
-const result = mult(objectWithNumbers)
-console.log(result)
+const result = mult(objectWithNumbers);
+console.log(result);
 // 300

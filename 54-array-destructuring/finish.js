@@ -6,18 +6,7 @@
  * Используйте деструктуризацию массива
  */
 
-const processQuantities = (arr) => {
-  let defaultQty = 0;
-  let minQty = 0;
-  let maxQty = 0;
-
-  arr.sort((a, b) => a - b);
-  minQty = arr[0];
-  maxQty = arr[arr.length - 1];
-  if (arr.length > 2) {
-    defaultQty = arr[1];
-  }
-
+const processQuantities = ([minQty, maxQty, defaultQty = 0]) => {
   console.log(minQty); // 8
   console.log(maxQty); // 29
   console.log(defaultQty); // 10 в первом вызове, 0 во втором вызове

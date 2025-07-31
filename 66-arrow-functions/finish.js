@@ -4,10 +4,16 @@
  */
 
 function mult(a, b) {
-  return a * b
+  return a * b;
 }
 
+const mult = (a, b) => {
+  return a * b;
+};
+
+setTimeout(() => console.log(mult(5, 10)), 1000);
+
 setTimeout(function () {
-  console.log(mult(5, 10))
-}, 1000)
+  console.log(mult(5, 10));
+}, 1000);
 // 50
